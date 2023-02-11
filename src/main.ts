@@ -4,6 +4,7 @@ import { ObjectRawResponse } from "https://deno.land/x/endofunctor@v0.0.1.91/opt
 export default [
     {
         path: "/",
+        header: ".html",
         f: async () => await Deno.readFile("./static/html/main.html")
     },
     {   
