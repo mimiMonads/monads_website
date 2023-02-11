@@ -1,13 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./s/css/main.css">
-    <title>Document</title>
-</head>
-<body>
-    <p>Hello world</p>
-</body>
+ <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="./s/img/fav.ico" type="image/x-icon" >
+  <link rel="stylesheet" href="./s/css/base.css">
+<script async src="https://cdn.jsdelivr.net/npm/@finsweet/attributes-codehighlight@1/codehighlight.js"></script>
+  <title>Welcome!</title>
+ </head>
+ <body>
+  <div class="main-body">
+   <nav id="navbar">
+    <header>Welcome!</header>
+    <a href="#intro" class="nav-link"> Introduction </a>
+
+   </nav>
+   <main id="main-doc">
+    <section class="main-section" id="intro">
+    <header>Get started in 10 Minutes</header>
+    <p>Get Endofunctor and a server</p>
+
+    <!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #8f5902; font-style: italic">//Endofunctor is just a router, so a server that gives a Request and expects a Response is needed</span>
+
+<span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000; font-weight: bold">{</span> <span style="color: #000000">serve</span> <span style="color: #000000; font-weight: bold">}</span> <span style="color: #000000">from</span> <span style="color: #4e9a06">&quot;https://deno.land/std@0.159.0/http/server.ts&quot;</span><span style="color: #000000; font-weight: bold">;</span>
+
+<span style="color: #8f5902; font-style: italic">// import fun</span>
+
+<span style="color: #204a87; font-weight: bold">import</span> <span style="color: #000000">fun</span> <span style="color: #000000">from</span> <span style="color: #4e9a06">&quot;https://deno.land/x/endofunctor/fun.ts&quot;</span><span style="color: #000000; font-weight: bold">;</span>
+</pre></div>
+    <br>
+    <p>Give a path and a function</p>
+    <br>
+
+<!-- HTML generated using hilite.me -->
+<div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #8f5902; font-style: italic">// the function has to return a valid BodyInt or in a Promise</span>
+        <span style="color: #000000">await</span> <span style="color: #000000">serve</span><span style="color: #000000; font-weight: bold">(</span>
+        <span style="color: #000000">fun</span><span style="color: #000000; font-weight: bold">()([</span>
+        <span style="color: #000000; font-weight: bold">{</span>
+            <span style="color: #000000">path</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;/&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+            <span style="color: #000000">f</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">_</span><span style="color: #000000; font-weight: bold">)</span> <span style="color: #ce5c00; font-weight: bold">=&gt;</span> <span style="color: #4e9a06">&quot;hello world&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #000000; font-weight: bold">},</span>
+        <span style="color: #000000; font-weight: bold">]),</span>
+        <span style="color: #000000; font-weight: bold">{</span> <span style="color: #000000">port</span>: <span style="color: #204a87; font-weight: bold">8080</span> <span style="color: #000000; font-weight: bold">},</span>
+    <span style="color: #000000; font-weight: bold">);</span>
+    </pre></div>
+
+    <br>
+    <p>Add parameters, a query, a status, or a header!</p>
+    <br>
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #8f5902; font-style: italic">// the router auto-detect if you are using (parameters,  queries, or Request ) unless you send the arguments out of the scope</span>
+    <span style="color: #8f5902; font-style: italic">// r: (arguments) =&gt; outOfScope(arguments),</span>
+    <span style="color: #8f5902; font-style: italic">// you can add or remove them with &quot;add&quot;, &quot;delete&quot;</span>
+    
+    <span style="color: #000000">await</span> <span style="color: #000000">serve</span><span style="color: #000000; font-weight: bold">(</span>
+      <span style="color: #000000">fun</span><span style="color: #000000; font-weight: bold">(</span>
+        <span style="color: #000000; font-weight: bold">{</span> <span style="color: #000000">hasName</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;http://127.0.0.1:8080/&quot;</span> <span style="color: #000000; font-weight: bold">},</span>
+      <span style="color: #000000; font-weight: bold">)([</span>
+        <span style="color: #000000; font-weight: bold">{</span>
+          <span style="color: #000000">path</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;/test/:id&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+          <span style="color: #000000">status</span>: <span style="color: #204a87; font-weight: bold">201</span><span style="color: #000000; font-weight: bold">,</span>
+          <span style="color: #000000">header</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;.html&quot;</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #8f5902; font-style: italic">// { &#39;Content-Type&#39; : &#39;text/html&#39;}</span>
+          <span style="color: #000000">f</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">f</span><span style="color: #000000; font-weight: bold">)</span> <span style="color: #ce5c00; font-weight: bold">=&gt;</span> <span style="color: #000000">f</span><span style="color: #000000; font-weight: bold">.</span><span style="color: #000000">param</span><span style="color: #000000; font-weight: bold">.</span><span style="color: #000000">id</span> <span style="color: #ce5c00; font-weight: bold">+</span> <span style="color: #4e9a06">&quot; &quot;</span> <span style="color: #ce5c00; font-weight: bold">+</span> <span style="color: #000000; font-weight: bold">(</span><span style="color: #000000">f</span><span style="color: #000000; font-weight: bold">.</span><span style="color: #000000">query</span><span style="color: #ce5c00; font-weight: bold">?</span><span style="color: #000000; font-weight: bold">.</span><span style="color: #000000">hello</span> <span style="color: #ce5c00; font-weight: bold">||</span> <span style="color: #4e9a06">&quot;&quot;</span><span style="color: #000000; font-weight: bold">),</span>
+        <span style="color: #000000; font-weight: bold">},</span>
+      <span style="color: #000000; font-weight: bold">]),</span>
+      <span style="color: #000000; font-weight: bold">{</span> <span style="color: #000000">port</span>: <span style="color: #204a87; font-weight: bold">8080</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">hostname</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;127.0.0.1&quot;</span> <span style="color: #000000; font-weight: bold">},</span>
+    <span style="color: #000000; font-weight: bold">);</span>
+    </pre></div>
+
+    <br>
+    <p>Static file is natively built in Endofunctor!</p>
+    <br>
+
+    <!-- HTML generated using hilite.me -->
+    <div style="background: #f8f8f8; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #8f5902; font-style: italic">// &quot;path&quot; is relative to the terminal</span>
+    <span style="color: #8f5902; font-style: italic">// remove mime types with mime:false</span>
+    <span style="color: #8f5902; font-style: italic">// add mime with extra: [ [header, extension]]</span>
+    <span style="color: #000000">await</span> <span style="color: #000000">serve</span><span style="color: #000000; font-weight: bold">(</span>
+    <span style="color: #000000">fun</span><span style="color: #000000; font-weight: bold">(</span>
+        <span style="color: #000000; font-weight: bold">{</span> <span style="color: #000000">hasName</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;http://127.0.0.1:8080/&quot;</span> <span style="color: #000000; font-weight: bold">},</span>
+    <span style="color: #000000; font-weight: bold">)([</span>
+        <span style="color: #000000; font-weight: bold">{</span>
+        <span style="color: #000000">type</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;static&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #000000">name</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;/s/&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #000000">path</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;./static/&quot;</span><span style="color: #000000; font-weight: bold">,</span>
+        <span style="color: #000000; font-weight: bold">},</span>
+        <span style="color: #000000; font-weight: bold">,</span>
+    <span style="color: #000000; font-weight: bold">]),</span>
+    <span style="color: #000000; font-weight: bold">{</span> <span style="color: #000000">port</span>: <span style="color: #204a87; font-weight: bold">8080</span><span style="color: #000000; font-weight: bold">,</span> <span style="color: #000000">hostname</span><span style="color: #ce5c00; font-weight: bold">:</span> <span style="color: #4e9a06">&quot;127.0.0.1&quot;</span> <span style="color: #000000; font-weight: bold">},</span>
+    <span style="color: #000000; font-weight: bold">);</span>
+    </pre></div>
+    </section>
+   </main>
+  </div>
+  <footer>
+  </footer>
+ </body>
 </html>

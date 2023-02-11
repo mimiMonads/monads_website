@@ -5,12 +5,12 @@ import fun from "https://deno.land/x/endofunctor@v0.0.1.91/fun.ts";
  
 await serve(
   fun()([
-    ... main,
+    ...main,
     {
      type: "static",
      name: "/s/",
-     path: "./static/"
+     path: "./static/",
     }
   ]),
-  { port: 8080 },
+  { port: 8080 , hostname: "127.0.0.1"},
 );
