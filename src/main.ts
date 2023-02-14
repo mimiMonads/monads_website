@@ -1,5 +1,6 @@
 import { ObjectRawResponse } from "https://deno.land/x/endofunctor@v0.0.1.91/optimizer/types.ts"
 
+
 //basic examples
 export default [
     {
@@ -17,7 +18,7 @@ export default [
     {
         path: "/hello/:name",
         f:  f => "hello " + f.param.name
-    },    
+    },  
     {
         path: "/ping",
         f: () => "pong" 
