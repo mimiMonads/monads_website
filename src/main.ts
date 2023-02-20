@@ -1,4 +1,4 @@
-import { ObjectRawResponse } from "https://deno.land/x/endofunctor@v0.0.1.91/optimizer/types.ts"
+import { ObjectRawResponse } from "https://deno.land/x/endofunctor@v0.0.2.0/optimizer/types.ts"
 
 
 //basic examples
@@ -23,4 +23,39 @@ export default [
         path: "/ping",
         f: () => "pong" 
     }
+    , {
+        path: "/get/:id",
+        type: "request",
+        signer: {
+          seed: "hello",
+          size: 8,
+          sequence: .25,
+        },
+        f: (f) =>
+          new Response(f.sign(f.param.id), {
+            headers: new Headers({
+              "Set-Cookie": ("session=" + f.sign(f.param.id) +";SameSite=Strict;Path=/"),
+            }),
+          }),
+      }, {
+        path: "/check",
+        verifier: {
+          seed: "hello",
+          size: 8,
+          sequence: .25,
+        },
+        f: (r) =>  (
+          c => c !== null
+            ? (
+              p => p !== -1
+                ? r.verify(c.slice(p+8,p+8+17)) ? "hello" : "null"
+                : "null"
+            )(
+              c.indexOf("session=")
+            )
+            : "null"
+        )(
+          r.req.headers.get("Cookie")
+        )
+      },
 ] as ObjectRawResponse[]
