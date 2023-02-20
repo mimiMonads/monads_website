@@ -28,8 +28,8 @@ export default [
         type: "request",
         signer: {
           seed: "hello",
-          size: 8,
-          sequence: .25,
+          size: 16,
+          sequence: .5,
         },
         f: (f) =>
           new Response(f.sign(f.param.id), {
@@ -41,14 +41,14 @@ export default [
         path: "/check",
         verifier: {
           seed: "hello",
-          size: 8,
-          sequence: .25,
+          size: 16,
+          sequence: .5,
         },
         f: (r) =>  (
           c => c !== null
             ? (
               p => p !== -1
-                ? r.verify(c.slice(p+8,p+8+17)) ? "hello" : "null"
+                ? r.verify(c.slice(p+8,p+8+17) ) === 1? "hello" : "no-valid"
                 : "null"
             )(
               c.indexOf("session=")
