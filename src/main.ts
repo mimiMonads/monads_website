@@ -28,7 +28,7 @@ export default [
         type: "request",
         signer: {
           seed: "hello",
-          size: 16,
+          size: 8,
           sequence: .5,
         },
         f: (f) =>
@@ -41,7 +41,7 @@ export default [
         path: "/check",
         verifier: {
           seed: "hello",
-          size: 16,
+          size: 8,
           sequence: .5,
         },
         f: (r) =>  (
