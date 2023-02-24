@@ -28,8 +28,8 @@ export default [
         type: "request",
         signer: {
           seed: "hello",
-          size: 8,
-          sequence: .5,
+          size: 32,
+          sequence: .25,
         },
         f: (f) =>
           new Response(f.sign(f.param.id), {
@@ -41,8 +41,8 @@ export default [
         path: "/check",
         verifier: {
           seed: "hello",
-          size: 8,
-          sequence: .5,
+          size: 32,
+          sequence: 25,
         },
         f: (r) =>  (
           c => c !== null
