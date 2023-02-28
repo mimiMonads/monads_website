@@ -1,4 +1,4 @@
-import { ObjectRawResponse } from "https://deno.land/x/endofunctor@v0.0.2.0/optimizer/types.ts"
+import { ObjectRawResponse } from "https://deno.land/x/endofunctor@v0.0.2.3/optimizer/types.ts"
 
 
 //basic examples
@@ -28,7 +28,6 @@ export default [
         type: "request",
         signer: {
           seed: "hello",
-          size: 32,
           sequence: .25,
         },
         f: (f) =>
@@ -41,14 +40,13 @@ export default [
         path: "/check",
         verifier: {
           seed: "hello",
-          size: 32,
-          sequence: 25,
+          sequence: .25,
         },
         f: (r) =>  (
           c => c !== null
             ? (
               p => p !== -1
-                ? r.verify(c.slice(p+8,p+8+17) ) === 1? "hello" : "no-valid"
+                ? r.verify(c.slice(p+8,c.length))
                 : "null"
             )(
               c.indexOf("session=")
